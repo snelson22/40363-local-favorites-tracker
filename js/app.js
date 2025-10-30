@@ -19,6 +19,38 @@ console.log('Favorites list:', favoritesList);
 console.log('Search input:', searchInput);
 console.log('Category filter:', categoryFilter);
 
+// Function to save favorites to localStorage
+function saveFavorites() {
+    try {
+        localStorage.setItem('localFavorites', JSON.stringify(favorites));
+        console.log('Favorites saved to localStorage');
+        console.log('Saved', favorites.length, 'favorites');
+    } catch (error) {
+        console.error('Error saving to localStorage:', error);
+        alert('Unable to save favorites. Your browser may have storage disabled.');
+    }
+}
+
+// Function to load favorites from localStorage
+function loadFavorites() {
+    try {
+        const savedData = localStorage.getItem('localFavorites');
+
+        if (savedData) {
+            favorites = JSON.parse(savedData);
+            console.log('Favorites loaded from localStorage');
+            console.log('Loaded', favorites.length, 'favorites');
+        } else {
+            console.log('No saved favorites found');
+            favorites = [];
+        }
+    } catch (error) {
+        console.error('Error loading from localStorage:', error);
+        console.log('Starting with empty favorites array');
+        favorites = [];
+    }
+}
+
 // Function to display all favorites on the page
 function displayFavorites() {
     console.log('Displaying favorites...');
@@ -117,6 +149,9 @@ function deleteFavorite(index) {
         favorites.splice(index, 1);
         console.log('Favorite deleted. Total remaining:', favorites.length);
 
+        // Save to localStorage
+        saveFavorites();
+
         // Re-apply current search/filter
         searchFavorites();
     } else {
@@ -168,6 +203,20 @@ function addFavorite(event) {
     // Display updated list (resets filters)
     displayFavorites();
 
+    // Add to favorites array
+    favorites.push(newFavorite);
+    console.log('Total favorites:', favorites.length);
+
+    // Save to localStorage
+    saveFavorites();
+
+    // Clear the form
+    form.reset();
+
+    // Display updated list (resets filters)
+    displayFavorites();
+
+
     console.log('Favorite added successfully!');
 }
 
@@ -178,5 +227,8 @@ categoryFilter.addEventListener('change', searchFavorites);
 
 console.log('Event listeners attached - app is ready!');
 
-// Display empty message when page first loads
+// Load saved favorites from localStorage on startup
+loadFavorites();
+
+// Display the loaded favorites (or empty message)
 displayFavorites();
