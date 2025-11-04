@@ -212,8 +212,6 @@ textarea {
 
 /* ==========================================
    FAVORITES GRID & CARDS
-   LAB11: Add grid layout structure
-   TODO LAB13: Cards will be populated by JavaScript
    ========================================== */
 
 /* TODO LAB11: Add .favorites-grid and .empty-message styles */
@@ -229,6 +227,14 @@ textarea {
     color: #999;
     font-style: italic;
     padding: 2rem;
+}
+
+.favorites-count {
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 1rem;
+    font-style: italic;
 }
 
 /* ==========================================

@@ -133,6 +133,12 @@ function searchFavorites() {
         // Add this card to the favorites list
         favoritesList.innerHTML += cardHTML;
     });
+
+    // Display count
+    const countMessage = document.createElement('p');
+    countMessage.className = 'favorites-count';
+    countMessage.textContent = `Showing ${filteredFavorites.length} of ${favorites.length} favorites`;
+    favoritesList.prepend(countMessage);
 }
 
 // Function to delete a favorite by index
