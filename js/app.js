@@ -226,16 +226,6 @@ function addFavorite(event) {
     favorites.push(newFavorite);
     console.log('Total favorites:', favorites.length);
 
-    // Clear the form
-    form.reset();
-
-    // Display updated list (resets filters)
-    displayFavorites();
-
-    // Add to favorites array
-    favorites.push(newFavorite);
-    console.log('Total favorites:', favorites.length);
-
     // Save to localStorage
     saveFavorites();
 
@@ -244,7 +234,6 @@ function addFavorite(event) {
 
     // Display updated list (resets filters)
     displayFavorites();
-
 
     console.log('Favorite added successfully!');
 }
